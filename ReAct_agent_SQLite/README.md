@@ -7,7 +7,8 @@ A high-performance, autonomous AI Agent built using **LangGraph** and the **ReAc
 - **SQLite**: Usage of memory saving of the conversation
 - **Stateful Logic**: Built on `StateGraph`, maintaining a clean conversation flow between the LLM and functional nodes.
 - **Dynamic Routing**: Implements conditional edges to handle the "Thought -> Action -> Observation" loop.
-- **Multi-Model Support**: Integrated with Google Gemini 2.5 Flash.
+- **Multi-Model Support**: Integrated with Groq free tier.
+- **Human-in-the-loop**: Implemented Human-in-the-loop (HITL) using LangGraph breakpoints to ensure safe tool execution.
 
 ## The Architecture
 The agent follows a cyclic graph structure:
