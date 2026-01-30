@@ -46,7 +46,10 @@ workflow.add_conditional_edges(
 workflow.add_edge("tools","agent")
 
 # compile the graph
-app = workflow.compile(checkpointer=memory)
+app = workflow.compile(
+    checkpointer=memory,            # for the SQLite saver
+    interrupt_before=["tools"]      # for the Human-in-the-loop
+)
 
 
 

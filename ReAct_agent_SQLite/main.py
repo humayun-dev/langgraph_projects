@@ -56,6 +56,26 @@ def run_agent():
                     elif node_name == "tools":
                         print(f"Tool Result: {last_msg.content}")
         
+        snapshot = app.get_state(config)
+        if snapshot.next:
+            print("\nPAUSED: Approval required to execute tools.")
+            user_approval = input("Proceed? (y/n): ")
+
+            if user_approval.lower() in ['y', 'yes']:
+                print("Resuming...")
+                # Resume by passing None. It picks up right where it stopped.
+                for event in app.stream(None, config=config):
+                    for node_name, output in event.items():
+                        print(f"[Node: {node_name}]")
+                        if "messages" in output:
+                            last_msg = output["messages"][-1]
+                            if node_name == "agent":
+                                print(f"Assistant: {last_msg.content}")
+                            elif node_name == "tools":
+                                print(f"Tool Result: {last_msg.content}")
+            else:
+                print("Tool execution cancelled.")
+        
         print("-" * 30 + "\n")
 
 if __name__ == "__main__":
