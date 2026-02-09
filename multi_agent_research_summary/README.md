@@ -21,4 +21,12 @@ multi_agent_research_summary/
 ├── .env            # API Keys (hidden)
 ├── main.py         # CLI Entry point
 ├── streamlit_app.py # Web UI Entry point
-└── README.md
+└── README.
+
+How it Works
+1. START: User provides a research topic.
+2. Manager: Checks the state. If no notes exist, it routes to the Researcher.
+3. Researcher: Hits the Groq API to find facts and saves them to research_notes.
+4. Manager: Sees notes exist and routes to the Writer.
+5. Writer: Hits the Groq API to format the final summary.
+6. END: The graph terminates and displays the result.
